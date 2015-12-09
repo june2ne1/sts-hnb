@@ -27,6 +27,10 @@ public class AdminController {
 	MemberVO member;
 	@Autowired
 	MovieVO movie;
+	@Autowired
+	List<MemberVO> list;
+	@Autowired
+	List<MovieVO> movie_list;
 	@RequestMapping("/Admin")
 	public String home(){
 		logger.info("AdminController-home() 진입");
