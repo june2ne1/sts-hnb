@@ -152,6 +152,7 @@ public class MemberDAOImpl implements MemberDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("dao 카운트 수 " + temp);
 		return temp;
 	}
 	

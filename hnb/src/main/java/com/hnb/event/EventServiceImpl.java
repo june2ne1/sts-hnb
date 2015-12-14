@@ -1,8 +1,8 @@
-package com.hnb.article;
+package com.hnb.event;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class ArticleServiceImpl {
+public class EventServiceImpl {
 
 }
