@@ -1,35 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-
-	<LINK REL="stylesheet" type="text/css" href="${css}/board.css"/>
-	<c:set var="PAGESIZE" value="5"/>
-	<c:set var="GROUPSIZE" value="3"/>
-	<c:choose>
-		<c:when test="${count%PAGESIZE eq 0}">
-			<c:set var="totPage" value="${count/PAGESIZE}"></c:set>
-		</c:when>
-		<c:otherwise>
-			<c:set var="totPage" value="${count/PAGESIZE+1}"></c:set>
-		</c:otherwise>
-	</c:choose>	
-	<c:set var="startPage" value="${pageNo-((pageNo-1)%GROUPSIZE)}"></c:set>
-	<c:choose>
-		<c:when test="${startPage+PAGESIZE-1 le toPage}">
-			<c:set var="lastPage" value="${startPage+GROUPSIZE-1}"></c:set>
-		</c:when>
-		<c:otherwise>
-			<c:set var="lastPage" value="${totPage}"> </c:set>
-		</c:otherwise>
-	</c:choose>
+<LINK REL="stylesheet" type="text/css" href="${css}/board.css"/>	
+<c:set var="PAGESIZE" value="5"/>
+<c:set var="GROUPSIZE" value="3"/>
+<c:choose>
+	<c:when test="${count%PAGESIZE eq 0}">
+		<c:set var="totPage" value="${count/PAGESIZE}"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="totPage" value="${count/PAGESIZE+1}"></c:set>
+	</c:otherwise>
+</c:choose>
+<c:set var="startPage" value="${pageNo - ((pageNo-1)%GROUPSIZE) }"></c:set>
+<c:choose>
+	<c:when test="${startPage+GROUPSIZE-1 le totPage}">
+		<c:set var="lastPage" value="${startPage+GROUPSIZE-1}"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="lastPage" value="${totPage}"></c:set>
+	</c:otherwise>
+</c:choose>
 <div id="boardList">
 
- <h1 align=center style="color: yellow; margin-bottom: 50px;">회원목록</h1>
- <table>
- 	<tr>
- 		<td style="text-align: right">${count}</td>
- 	</tr>
- </table>
-<TABLE id="tab_boarderList">
+<h1 align=center style='color:white;margin-bottom:30px'>회원목록</h1>
+<table id="tab_test">
+	<tr>
+		<td style="text-align: right">${count} 명</td>
+	</tr>
+</table>
+<TABLE id="tab_borderList">
 	
 	<TR ALIGN=CENTER>
 		<TD WIDTH=10%><B>번호</B></TD>
@@ -61,27 +59,28 @@
 			<%-- <IMG SRC="${img}/btn_bf_block.gif">&nbsp; --%>
 			<c:if test="${startPage-GROUPSIZE gt 0}">
 				<a href="${context}/member/boardList/${startPage-GROUPSIZE}">
-					<IMG SRC="${img}/btn_bf_page.gif">&nbsp; 
+					<IMG SRC="${img}/btn_bf_page.gif">&nbsp;  
 				</a>
 			</c:if>
-			<c:forEach begin="${startPge}" end="${lastPage}" step="1" varStatus="status">
+			<c:forEach begin="${startPage}" end="${lastPage}" step="1" varStatus="status">
 				<c:choose>
 					<c:when test="${status.index == pageNo}">
-						<font style="color: red; font-size: 20px;">${status.index}</font>
+						<font style="color:red;font-size: 20px">${status.index}</font>	
 					</c:when>
 					<c:otherwise>
-						<a href="${context}/member/boardList/${status.index}"></a>
-						<font>${status.index}</font>
+						<a href="${context}/member/boardList/${status.index}">
+							<font>${status.index}</font>
+						</a>
 					</c:otherwise>
 				</c:choose>
 				 
-			</c:forEach> 
-			<c:if test="${startPage - GROUPSIZE lt totPage}">
+			</c:forEach>
+			<c:if test="${startPage-GROUPSIZE lt totPage}">
 				<a href="${context}/member/boardList/${startPage+GROUPSIZE}">
-					<IMG SRC="${img}/btn_nxt_page.gif">&nbsp;
+					<IMG SRC="${img}/btn_nxt_page.gif">&nbsp;    
 				</a>
-			</c:if> 	
-			 
+			</c:if>
+			
 			<%-- <IMG SRC="${img}/btn_nxt_block.gif">   --%>  	    		     
 		</TD>
 		<TD WIDTH=200 ALIGN=RIGHT>
@@ -98,9 +97,8 @@
 </TABLE>
 
 </FORM>
-
-</div>
-
-
-<!-- 전체 레코드 수 -((현재페이지번호 -1)*현페이지 당 레코드 수 + 현재 게시물 출력순서)
-	count - ((nowPage-1)*rowPerPage+status.index) -->
+</div>	
+<!-- 
+전체레코드수 - ((현재페이지번호-1)*한페이지당레코드수+현재게시물출력순서)
+	count - ((nowPage-1)*rowPerPage+status.index)
+ -->
