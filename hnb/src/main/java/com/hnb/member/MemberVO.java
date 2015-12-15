@@ -10,6 +10,14 @@ public class MemberVO implements Serializable{
 
 	private String id; // 아이디  =>hong => 'hong'
 	private String password; // 비번
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	private String name; // 회원이름
 	private String birth; // 생년
 	private String phone; //핸드폰
@@ -44,9 +52,7 @@ public class MemberVO implements Serializable{
 	public String getPassword() {
 		return password;
 	}
-	public String getName() {
-		return name;
-	}
+	
 	public String getBirth() {
 		return birth;
 	}
@@ -68,9 +74,7 @@ public class MemberVO implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
