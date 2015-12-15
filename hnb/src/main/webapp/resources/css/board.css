@@ -1,45 +1,52 @@
 #boardList {
 	height: 400px;
+	margin: auto;
 }
 #boardList a:link {
   color: #ffffff;text-decoration:none;
 }
 
 #boardList a:visited {
-  color: #ff80c0;text-decoration:none;
+  color: #ffff80;text-decoration:none;
 }
 
 #boardList a:hover {
-  color: ##ffffff;text-decoration:none;
-   font-size:20pt; font-family:"굴림";
+  color: #ffffff;text-decoration:none;
+  font-size:20pt; font-family:"굴림"; 
 }
 
 #boardList form {
   margin-bottom:0; margin-top:0; padding:0;
 }
 
-#tab_boarderList{
+#tab_borderList{
   font-size:12pt;
-   WIDTH:80%; 
-   HEIGHT:40px;
-   BORDER:1px solid white; 
-   CELLSPACING:0; 
-   CELLPADDING:1px; 
-   margin:auto;
+  WIDTH:80%;
+  height:40px;
+  BORDER:1px solid white;
+  CELLSPACING:0;
+  CELLPADDING:1px;
+  margin : auto;
+  
 }
-#tab_boarderList tr td{
+#tab_borderList tr td{
 	BORDER:1px solid white;
+}
+#tab_test{
+	margin: auto;
+	width: 80%;
 }
 #boardList input,textarea,form {
   font-size:12pt; font-family:"굴림"; line-height:12pt;
+
 }
 
 #boardList td,select {
-  color : #ffffff; font-family:"����"; font-size:9pt; line-height: 17pt;
+  color : #ffffff; font-family:"굴림"; font-size:12pt; line-height: 17pt;
 }
 #pagenation{
-	margin: auto;
 	font-size:12pt;
-    WIDTH:80%; 
-    HEIGHT:40px;
+  	WIDTH:80%;
+  	height:40px;
+	margin : auto;
 }
