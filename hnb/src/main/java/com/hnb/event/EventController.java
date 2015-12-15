@@ -27,7 +27,7 @@ public class EventController {
 	MemberServiceImpl service;
 	@Autowired
 	MemberVO member;
-	@RequestMapping("/boardList/{}")
+	@RequestMapping("/boardList")
 	public String boardList(
 			@RequestParam(value="pageNo",defaultValue="1")String pageNo,
 			@RequestParam(value="column",required=false)String column,
