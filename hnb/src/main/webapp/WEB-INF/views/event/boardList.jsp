@@ -4,15 +4,15 @@
 
  <script type="text/javascript">
  	$(function() {
- 		board.load(context+'/event/boardList/1');
+ 		board.load(context+'/event/boardList');
 	});
  	
  	var board = {
  		load : function(url) {
  		  $.getJSON(url,function(data) {
-			var table = '<TABLE id="tab_borderList"><TR ALIGN=CENTER><TD WIDTH=10%><B>번호</B></TD>'
-			+' <TD WIDTH=20%><B>아이디</B></TD><TD WIDTH=20%><B>회원명</B></TD><TD WIDTH=30%><B>이메일</B></TD>'
-			+'<TD WIDTH=18%><B>가입일</B></TD></TR>'
+			var table = '<TABLE id="tab_borderList" style="color:white;margin-bottom:30px">자유게시판<TR ALIGN=CENTER><TD WIDTH=10%><B>번호</B></TD>'
+			+' <TD WIDTH=40%><B>제목</B></TD><TD WIDTH=20%><B>작성자</B></TD><TD WIDTH=20%><B>작성일</B></TD>'
+			+'<TD WIDTH=8%><B>참조</B></TD></TR>'
 			/* <c:forEach var="member" items="${memberList}" varStatus="status">'
 			+'<TR><TD WIDTH=10% ALIGN=CENTER>${status.index+1}</TD><TD WIDTH=20% ALIGN=CENTER>${member.id}</TD>'
 			+'<TD WIDTH=20% ALIGN=CENTER><A HREF="BoardContent.jsp">${member.name}</A></TD>'

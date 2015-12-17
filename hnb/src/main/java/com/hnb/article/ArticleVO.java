@@ -4,19 +4,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ArticleVO {
-	int rcdNo; //글번호
-	int grpNo; //글 그룹 번호
-	String usrName; // 작성자 이름
-	String usrMail; // 작성자 이메일
-	String usrSubject; // 글 제목
-	String usrPass; // 글의 비번
-	String usrContent; // 글내용
-	String usrFileNmae; // 업로드 되는 파일 이름
-	int usrFileSize; //업로드 되는 파일 크키
-	String usrDate; //작성일
-	int usrRefer; // 글 참조 횟수
-	int rcdLevel; // 글 레벨
-	int rcdOrder; //글 그룹에서 글 의 출력순서
+	private int rcdNo; //글번호
+	private int grpNo; //글 그룹 번호
+	private String usrName; // 작성자 이름
+	private String usrMail; // 작성자 이메일
+	private String usrSubject; // 글 제목
+	private String usrPass; // 글의 비번
+	private String usrContent; // 글내용
+	private String usrFileNmae; // 업로드 되는 파일 이름
+	private int usrFileSize; //업로드 되는 파일 크키
+	private String usrDate; //작성일
+	private int usrRefer; // 글 참조 횟수
+	private int rcdLevel; // 글 레벨
+	private int rcdOrder; //글 그룹에서 글 의 출력순서
 	
 	
 	public ArticleVO() {

@@ -22,28 +22,28 @@ public class ArticleServiceImpl implements ArticleService {
 	public int write(ArticleVO article) {
 		logger.info("ArticleServiceImpl : write");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.write(article);
+		return mapper.insert(article);
 	}
 
 	@Override
 	public List<ArticleVO> getList(Command command) {
 		logger.info("ArticleServiceImpl : getList");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.getList(command);
+		return mapper.selectAll(command);
 	}
 
 	@Override
 	public List<ArticleVO> searchByKeyword(Command command) {
 		logger.info("ArticleServiceImpl : searchByKeyword");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.searchByKeyword(command);
+		return mapper.selectSomeBy(command);
 	}
 
 	@Override
 	public ArticleVO searchById(int rcdNo) {
 		logger.info("ArticleServiceImpl : searchById");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.searchById(rcdNo);
+		return mapper.selectOneBy(rcdNo);
 	}
 
 	@Override
@@ -64,14 +64,14 @@ public class ArticleServiceImpl implements ArticleService {
 	public int change(ArticleVO article) {
 		logger.info("ArticleServiceImpl : change");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.change(article);
+		return mapper.update(article);
 	}
 
 	@Override
 	public int remove(int rcdNo) {
 		logger.info("ArticleServiceImpl : remove");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.remove(rcdNo);
+		return mapper.delete(rcdNo);
 	}
 
 }

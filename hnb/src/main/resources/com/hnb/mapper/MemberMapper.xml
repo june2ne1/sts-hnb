@@ -31,7 +31,7 @@
 	 	EMAIL AS email,
 	 	REGDATE AS regdate,
 	 	PROFILE AS profile
- 	FROM (SELECT ROWNUM AS seq, m.* FROM (
+ 	FROM (SELECT ROWNUM AS seq, m.* FROM )
  		SELECT * FROM MEMBER
  		WHERE ${column} LIKE '%' || #{keyword} || '%' <!-- => WHERE NAME LIKE '%홍%' --> 
  	) m)
