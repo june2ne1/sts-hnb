@@ -14,36 +14,35 @@ import com.hnb.mapper.MemberMapper;
 import com.hnb.movie.MovieController;
 
 @Service
-public class ArticleServiceImpl implements ArticleService {
+public class ArticleServiceImpl implements ArticleService{
 	private static final Logger logger = LoggerFactory.getLogger(ArticleServiceImpl.class);
 	@Autowired private SqlSession sqlSession;
-	
 	@Override
 	public int write(ArticleVO article) {
 		logger.info("ArticleServiceImpl : write");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.insert(article);
+		return mapper.write(article);
 	}
 
 	@Override
-	public List<ArticleVO> getList(Command command) {
+	public List<ArticleVO> getList(Command commnad) {
 		logger.info("ArticleServiceImpl : getList");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.selectAll(command);
+		return mapper.getList(commnad);
 	}
 
 	@Override
 	public List<ArticleVO> searchByKeyword(Command command) {
 		logger.info("ArticleServiceImpl : searchByKeyword");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.selectSomeBy(command);
+		return mapper.searchByKeyword(command);
 	}
 
 	@Override
 	public ArticleVO searchById(int rcdNo) {
 		logger.info("ArticleServiceImpl : searchById");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.selectOneBy(rcdNo);
+		return mapper.searchById(rcdNo);
 	}
 
 	@Override
@@ -64,14 +63,13 @@ public class ArticleServiceImpl implements ArticleService {
 	public int change(ArticleVO article) {
 		logger.info("ArticleServiceImpl : change");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.update(article);
+		return mapper.change(article);
 	}
 
 	@Override
 	public int remove(int rcdNo) {
 		logger.info("ArticleServiceImpl : remove");
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
-		return mapper.delete(rcdNo);
+		return mapper.remove(rcdNo);
 	}
-
 }

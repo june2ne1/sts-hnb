@@ -1,5 +1,6 @@
 package com.hnb.event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,36 +20,52 @@ import com.hnb.global.CommandFactory;
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
 
+
 @Controller
 @RequestMapping("/event")
 public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
-	@Autowired MemberServiceImpl service;
-	@Autowired MemberVO memberVO;
+	@Autowired MemberVO member;
+	@Autowired MemberServiceImpl memberservice;
 	@Autowired ArticleVO article;
 	@Autowired ArticleServiceImpl articleService;
 	
-	
 	@RequestMapping("/boardList/{pageNo}")
 	public @ResponseBody List<ArticleVO> boardList(
-			@PathVariable("pageNo")String pageNo, //default값을 jsp에서 지정함.
+			@PathVariable("pageNo")String pageNo,
 			Model model){
-		logger.info("EventController - boardList() 진입");
-		logger.info("넘어온 페이지 번호 : {}",pageNo);
-		Command command = CommandFactory.list(pageNo);
-		List<ArticleVO> list = articleService.getList(command);
-		/*int count = service.count();
-		model.addAttribute("memberList",list);
-		model.addAttribute("count",service.count());
+		logger.info("EventController article()");
+		logger.info("넘어온 페이지번호 : {}",pageNo);
+		List<ArticleVO> list = new ArrayList<ArticleVO>();
+		//List<ArticleVO> list = articleService.getList(CommandFactory.list(pageNo));
+		/*model.addAttribute("memberList",list);
+		model.addAttribute("count", service.count());
 		model.addAttribute("pageNo",pageNo);*/
+		
 		return list;
 	}
-	
 	@RequestMapping("/boardList")
 	public String goList(){
-		logger.info("EventController - article() 진입");
+		logger.info("EventController article()");
 		return "event/boardList.tiles";
 	}
-	
-	
+	@RequestMapping("/memberSearch/{pageNo}")
+	public String memberSearch(
+			@PathVariable("pageNo")String pageNo,
+			@RequestParam("keyword")String keyword,
+			@RequestParam("column")String column, Model model
+			){
+		logger.info("EventController article()");
+		logger.info("넘어온 페이지번호 : {}",pageNo);
+		logger.info("넘어온 컬럼 : {}",column);
+		logger.info("넘어온 검색어 : {}",keyword);
+		Command command = CommandFactory.search(column, keyword, pageNo);
+		List<MemberVO> list = memberservice.searchByKeyword(command);
+		int count = memberservice.countByKeyword(command);
+		logger.info("리스트 결과 : {}",list.size());
+		model.addAttribute("memberList",list);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("count", count);
+		return "event/boardSearch.tiles";
+	}
 }

@@ -3,6 +3,7 @@
 /* html에 대한 스타일 지정은 common.css를 링크함으로써 사용합니다. */
 /* <link rel="stylesheet" href="path" type="text/css"/>  */
 
+
 @CHARSET "UTF-8";
 @IMPORT url("movie.css");
 @IMPORT url("bootstrap.css");
@@ -13,8 +14,6 @@
 @IMPORT url("ticket.css");
 @IMPORT url("global.css");
 @IMPORT url("board.css");
-
-
 
 
 

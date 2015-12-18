@@ -4,24 +4,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ArticleVO {
-	private int rcdNo; //글번호
-	private int grpNo; //글 그룹 번호
+	private int rcdNo; // 글번호
+	private int grpNo; // 글 그룹 번호
 	private String usrName; // 작성자 이름
 	private String usrMail; // 작성자 이메일
 	private String usrSubject; // 글 제목
 	private String usrPass; // 글의 비번
-	private String usrContent; // 글내용
-	private String usrFileNmae; // 업로드 되는 파일 이름
-	private int usrFileSize; //업로드 되는 파일 크키
-	private String usrDate; //작성일
-	private int usrRefer; // 글 참조 횟수
+	private String usrContent; // 글 내용
+	private String usrFileName; // 업로드 되는 파일 이름 
+	private int usrFileSize; // 업로드 되는 파일 크기
+	private String usrDate; // 작성일
+	private int usrRefer; // 글 참조횟수
 	private int rcdLevel; // 글 레벨
-	private int rcdOrder; //글 그룹에서 글 의 출력순서
-	
-	
-	public ArticleVO() {
-		
-	}
+	private int rcdOrder; // 글 그룹에서 글 의 출력순서
 	
 	public int getRcdNo() {
 		return rcdNo;
@@ -44,8 +39,8 @@ public class ArticleVO {
 	public String getUsrContent() {
 		return usrContent;
 	}
-	public String getUsrFileNmae() {
-		return usrFileNmae;
+	public String getUsrFileName() {
+		return usrFileName;
 	}
 	public int getUsrFileSize() {
 		return usrFileSize;
@@ -83,8 +78,8 @@ public class ArticleVO {
 	public void setUsrContent(String usrContent) {
 		this.usrContent = usrContent;
 	}
-	public void setUsrFileNmae(String usrFileNmae) {
-		this.usrFileNmae = usrFileNmae;
+	public void setUsrFileName(String usrFileName) {
+		this.usrFileName = usrFileName;
 	}
 	public void setUsrFileSize(int usrFileSize) {
 		this.usrFileSize = usrFileSize;
@@ -101,22 +96,4 @@ public class ArticleVO {
 	public void setRcdOrder(int rcdOrder) {
 		this.rcdOrder = rcdOrder;
 	}
-
-	@Override
-	public String toString() {
-		return "게시판 [글번호=" + rcdNo 
-				+ ", grpNo=" + grpNo 
-				+ ", usrName=" + usrName 
-				+ ", usrMail=" + usrMail
-				+ ", usrSubject=" + usrSubject 
-				+ ", usrPass=" + usrPass 
-				+ ", usrContent=" + usrContent
-				+ ", usrFileNmae=" + usrFileNmae 
-				+ ", usrFileSize=" + usrFileSize 
-				+ ", usrDate=" + usrDate
-				+ ", usrRefer=" + usrRefer 
-				+ ", rcdLevel=" + rcdLevel 
-				+ ", rcdOrder=" + rcdOrder + "]";
-	}
-	
 }
