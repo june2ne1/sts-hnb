@@ -5,11 +5,10 @@ import java.io.Serializable;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
-
-
 @Component
-public class AdminVO implements Serializable {
-	
+public class AdminVO implements Serializable{
+
+
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String password;
@@ -116,4 +115,5 @@ public class AdminVO implements Serializable {
 				    + ", 이메일=" + email 
 				    + ", 등록일=" + regdate + "]";
 	}
+
 }

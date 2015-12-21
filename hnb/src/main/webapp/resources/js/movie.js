@@ -1,11 +1,11 @@
- var Movie = {
+var Movie = {
 			 	home : function(project) {
 					$(".mainView").load(project + "/movie/Movie");
 				},
 				ranking : function(project) {
 					var arr = [];
 					$.getJSON(project + '/movie/movie_Chart', function(data) {
-						alert("겟제이슨 서버 다녀옴");
+						alert("겟제이슨 서버 다녀옴 !!");
 						var rank = '<div id="test"><h2 style="color: white; padding-top: 10;">무비차트</h2></div>';
 						$.each(data, function(index, value) {
 							rank += '<div class="chart_rank" id="chart_rank'+index+'"><div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
@@ -16,6 +16,7 @@
 					$('#movie_wrap').empty().append(rank);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
+							
 							Movie.movieName(project,arr[i]);
 							
 					});
@@ -24,7 +25,7 @@
 					});
 
 				},
-				movieName : function(project,filmNumber) { 
+				movieName : function(project,filmNumber) {
 		 			$.getJSON(project + '/movie/movie_name/'+filmNumber, 
 							function(data) {
 								var movieInfom = '<h1>무비페이지</h1>'
@@ -36,7 +37,7 @@
 									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html"><input type="button" value="바로 예매" class="movie_font_20 movie_bold movie_bg_color_green movie_txt_color_white "></a></td></tr></table>'
 									+'<div class="movie_margin_auto"></div><br /><div class="movie_infonavi movie_font_20"><ul><li><a href="#movie_story">영화스토리</a></li>'
 									+'<li><a href="#movie_tra">트레일러</a></li><li><a href="#movie_cut">스틸컷</a></li><li><a href="#movie_review">리뷰</a></li></ul></div></div>'
-									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10"><img src="../images/'+data.story+'.JPG;" alt="" /></div></div>'
+									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10"><img src="'+project+'/resources/images/'+data.story+'.JPG;" alt="" /></div></div>'
 									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷<input type="button" value="스틸컷 더보기" id="cutmore" class="movie_bold movie_bg_color_green movie_txt_color_white "></h2>'
 									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'1.jpg;" alt="" width="250" height="161" /></a></div>'
 									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'2.jpg;" alt="" width="250" height="161" /></a></div>'

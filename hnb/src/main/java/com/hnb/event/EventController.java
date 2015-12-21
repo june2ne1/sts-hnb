@@ -1,6 +1,6 @@
 package com.hnb.event;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hnb.article.ArticleServiceImpl;
-import com.hnb.article.ArticleVO;
 import com.hnb.global.Command;
 import com.hnb.global.CommandFactory;
 import com.hnb.member.MemberServiceImpl;
@@ -27,28 +24,7 @@ public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 	@Autowired MemberVO member;
 	@Autowired MemberServiceImpl memberservice;
-	@Autowired ArticleVO article;
-	@Autowired ArticleServiceImpl articleService;
 	
-	@RequestMapping("/boardList/{pageNo}")
-	public @ResponseBody List<ArticleVO> boardList(
-			@PathVariable("pageNo")String pageNo,
-			Model model){
-		logger.info("EventController article()");
-		logger.info("넘어온 페이지번호 : {}",pageNo);
-		List<ArticleVO> list = new ArrayList<ArticleVO>();
-		//List<ArticleVO> list = articleService.getList(CommandFactory.list(pageNo));
-		/*model.addAttribute("memberList",list);
-		model.addAttribute("count", service.count());
-		model.addAttribute("pageNo",pageNo);*/
-		
-		return list;
-	}
-	@RequestMapping("/boardList")
-	public String goList(){
-		logger.info("EventController article()");
-		return "event/boardList.tiles";
-	}
 	@RequestMapping("/memberSearch/{pageNo}")
 	public String memberSearch(
 			@PathVariable("pageNo")String pageNo,

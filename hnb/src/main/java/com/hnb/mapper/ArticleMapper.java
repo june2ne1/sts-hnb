@@ -12,7 +12,7 @@ public interface ArticleMapper {
 	// C : 추가
 	public int write(ArticleVO article);
 	// R : 조회
-	public List<ArticleVO> getList(Command commnad); //전체회원목록
+	public List<ArticleVO> getList(Command commnad); //게시판별 글목록
 	public List<ArticleVO> searchByKeyword(Command command); //임의의 값으로 검색
 	public ArticleVO searchById(int rcdNo); //아이디로 조회
 	public int count(); //전체회원수 조회

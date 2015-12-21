@@ -5,7 +5,6 @@ import java.util.List;
 import com.hnb.ticket.TicketVO;
 
 
-
 public interface TicketMapper {
 	// C
 	public int insert(TicketVO o);

@@ -13,10 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.hnb.global.Constants;
 import com.hnb.global.DatabaseFactory;
 import com.hnb.global.Vendor;
-
-
 @Repository
-public class MovieDAOImpl implements MovieDAO {
+public class MovieDAOImpl implements MovieDAO{
 	private Connection con;
 	private Statement stmt;
 	private PreparedStatement pstmt;
@@ -175,4 +173,6 @@ public class MovieDAOImpl implements MovieDAO {
 		}
 		return ChartList;
 	}
+	
+	
 }

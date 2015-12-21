@@ -3,6 +3,6 @@ package com.hnb.event;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EventServiceImpl {
+public class EventServiceImpl implements EventService{
 
 }

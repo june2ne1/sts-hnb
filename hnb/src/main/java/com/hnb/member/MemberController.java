@@ -1,13 +1,16 @@
+
+
 package com.hnb.member;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +24,15 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hnb.global.Constants;
 import com.hnb.global.FileUpload;
 
+
 @Controller
 @SessionAttributes("user")
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	@Autowired
-	MemberServiceImpl service;
-	@Autowired
-	MemberVO member;
+	@Autowired MemberServiceImpl service;
+	@Autowired MemberVO member;
+	
 	
 	@RequestMapping("/admin_home")
 	public String adminHome(){
@@ -51,8 +54,7 @@ public class MemberController {
 			String gender,
 			String email,
 			String phone,
-			Model model
-			){
+			Model model){
 		logger.info("가입 아이디 : {}",id);
 		logger.info("가입 패스워드 : {}",password);
 		logger.info("가입 이름 : {}",name);
@@ -88,36 +90,38 @@ public class MemberController {
 		return "member/join_Result";
 	}
 	@RequestMapping("/logout")
-	public String logout(Model model, SessionStatus status){
+	public String logout(Model model,SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
-		//session
-		status.setComplete(); //session의 값을 지우는 것.
+		status.setComplete();
 		return "redirect:/";
 	}
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public @ResponseBody MemberVO login(@RequestBody MemberVO param, Model model){
+	public @ResponseBody MemberVO login(@RequestBody MemberVO param,Model model){
 		logger.info("멤버컨트롤러 login() - 진입");
-		logger.info("유저아이디 : {}",param.getId());
-		logger.info("유저 비밀번호: {}",param.getPassword());
+		logger.info("넘어온 유저아이디 : {}",param.getId());
+		logger.info("유저비번 : {}",param.getPassword());
 		member = service.login(param.getId(), param.getPassword());
 		model.addAttribute("user", member);
+		String u = member.getId();
+		logger.info("로그인 과정에서 체크하는 아이디 : {}",u);
 		if (member.getId().equals(param.getId())) {
 			logger.info("로그인성공");
 		} else {
 			logger.info("로그인실패");
 		}
-		/*if (param.getId().equals("choa")) {
+		// choa 는 관리자	
+		/*if (member.getId().equals("choa")) {
 			model.addAttribute("admin", "yes");
 		} else {
 			model.addAttribute("admin", "no");
 		}*/
+		
 		return member;
 	}
 	@RequestMapping("/check_Overlap")
 	public Model checkOverlap(
 			String id,
-			Model model
-			){
+			Model model){
 		logger.info("멤버컨트롤러 checkOverlap() - 진입");
 		if (service.selectById(id).getId() == null) {
 			model.addAttribute("result", "usable");
@@ -135,26 +139,24 @@ public class MemberController {
 	}
 	@RequestMapping("/detail/{id}")
 	public @ResponseBody MemberVO detail(
-			@PathVariable("id")String id
-			){
+			@PathVariable("id")String id){
 		logger.info("멤버컨트롤러 detail() - 진입");
 		member = service.selectById(id);
 		return member;
 	}
-	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public @ResponseBody MemberVO update(
 			@RequestParam(required=false,value="file")MultipartFile multipartFile,
 			@RequestParam("password")String password,
 			@RequestParam("addr")String addr,
 			@RequestParam("email")String email,
 			@RequestParam("phone")String phone,
-			@RequestParam("id")String id
-			){
+			@RequestParam("id")String id){
 		logger.info("멤버컨트롤러 update() - 진입");
-		String path =Constants.imageDomain+"resources\\images\\";
+		String path = Constants.imageDomain+"resources\\images\\";
 		FileUpload fileUpload = new FileUpload();
 		String fileName = multipartFile.getOriginalFilename();
-		String fullPath = fileUpload.uploadFile(multipartFile, path, fileName);
+		String fullPath = fileUpload.uploadFile(multipartFile,path,fileName);
 		logger.info("파일업로드 경로 : {}",fullPath);
 		member.setPassword(password);
 		member.setAddr(addr);
@@ -167,7 +169,20 @@ public class MemberController {
 		} else {
 			logger.info("멤버컨트롤러 수정실패");
 		}
-		member = service.selectById(id);
 		return member;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

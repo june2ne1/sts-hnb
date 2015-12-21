@@ -1,17 +1,12 @@
 <%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding= "UTF-8"%>
 <script>
 $(function() {
-	if (condition) {
-		
-	} else {
-
-	}
-     Admin2.memberList(context+'/admin/member_list/1');
+     Admin2.memberList('1');
 });  
  var Admin2 = {
-		 memberList : function(url) {
-			 
-			  $.getJSON(url, function(data) {
+		 memberList : function(pageNo) {
+			 alert("넘어온"+pageNo);
+			  $.getJSON(context+'/admin/member_list'+pageNo, function(data) {
 		            var table = "<div id='boardList'><h1 align=center style='color:white;margin-bottom:30px'>회원목록</h1>"
 		           + "<TABLE id='tab_borderList'>"
 		           + "<TR ALIGN=CENTER><TD WIDTH=10%><B>번호</B></TD>"
@@ -55,7 +50,7 @@ $(function() {
 		                  + i
 		                  + '</font>';
 		                } else {
-		                	pagination += '<a href="'+context+'/admin/member_list/'+i+'">'
+		                	pagination += '<a href="#" onclick="return Admin2.memberList('+i+')">'
 		                    + '<font>'
 		                    + i
 		                    + '</font>'
